@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Keycard Pal — air-gapped Keycard companion for Ethereum and Bitcoin</title>
+<meta name="description" content="Keycard Pal is an air-gapped companion app for the Status Keycard. Review and sign Ethereum and Bitcoin transactions over NFC, and talk to your wallet through animated QR codes. Private keys never leave the card." />
+<link rel="icon" href="assets/icon.png" />
+<meta property="og:title" content="Keycard Pal" />
+<meta property="og:description" content="Air-gapped Keycard companion for Ethereum and Bitcoin. Your keys never leave the card." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://keycardpal.com/" />
+<meta property="og:image" content="https://keycardpal.com/assets/icon.png" />
+<meta name="theme-color" content="#121212" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #121212;
+    --surface: #1e1e1e;
+    --surface-2: #2a2a2a;
+    --line: rgba(255, 255, 255, 0.09);
+    --line-strong: rgba(255, 255, 255, 0.16);
+    --orange: #ff6400;
+    --orange-dim: #e15800;
+    --teal: #1c8a80;
+    --fg: #ffffff;
+    --fg-2: rgba(255, 255, 255, 0.72);
+    --fg-3: rgba(255, 255, 255, 0.52);
+    --sans: 'Schibsted Grotesk', system-ui, -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --radius: 16px;
+    --max: 1120px;
+  }
+
+  * { box-sizing: border-box; }
+
+  img { max-width: 100%; height: auto; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--orange); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+
+  h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; margin: 0; font-weight: 700; }
+  h2 { font-size: clamp(1.6rem, 3.6vw, 2.35rem); }
+  h3 { font-size: 1.06rem; letter-spacing: -0.01em; }
+  p { margin: 0 0 1rem; }
+  p:last-child { margin-bottom: 0; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--fg-3);
+    margin: 0 0 0.85rem;
+  }
+
+  section { padding: 84px 0; border-top: 1px solid var(--line); }
+  section > .wrap > .eyebrow + h2 { margin-bottom: 0.7rem; }
+  .lede { color: var(--fg-2); max-width: 62ch; font-size: 1.05rem; }
+
+  /* ---------- nav ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(18, 18, 18, 0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav { display: flex; align-items: center; gap: 24px; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -0.02em; color: var(--fg); }
+  .brand:hover { text-decoration: none; }
+  .brand img { width: 28px; height: 28px; border-radius: 7px; }
+  .nav-links { display: flex; gap: 22px; margin-left: auto; }
+  .nav-links a { color: var(--fg-2); font-size: 0.94rem; }
+  .nav-links a:hover { color: var(--fg); text-decoration: none; }
+  .nav .btn { padding: 8px 16px; font-size: 0.9rem; }
+
+  /* ---------- buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 24px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.98rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+  .btn:hover { text-decoration: none; }
+  .btn-primary { background: var(--orange); color: #14100c; }
+  .btn-primary:hover { background: #ff7a26; }
+  .btn-ghost { border-color: var(--line-strong); color: var(--fg); }
+  .btn-ghost:hover { border-color: var(--fg-3); background: rgba(255, 255, 255, 0.04); }
+
+  /* ---------- hero ---------- */
+  .hero { border-top: 0; padding: 96px 0 76px; position: relative; overflow: hidden; }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -280px;
+    left: 50%;
+    width: 900px;
+    height: 620px;
+    transform: translateX(-50%);
+    background: radial-gradient(closest-side, rgba(255, 100, 0, 0.16), transparent);
+    pointer-events: none;
+  }
+  .hero .wrap { position: relative; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; }
+  .hero h1 { font-size: clamp(2.3rem, 5.6vw, 3.6rem); }
+  .hero .lede { margin-top: 1.15rem; font-size: 1.14rem; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 2rem; }
+  .hero-shot { justify-self: center; }
+  .hero-shot img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 26px;
+    border: 1px solid var(--line-strong);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+    display: block;
+  }
+
+  /* ---------- trust strip ---------- */
+  .strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); }
+  .strip ul {
+    display: flex; flex-wrap: wrap; gap: 8px 34px;
+    list-style: none; margin: 0; padding: 20px 0;
+    font-family: var(--mono); font-size: 0.76rem;
+    text-transform: uppercase; letter-spacing: 0.11em; color: var(--fg-3);
+  }
+  .strip li::before { content: '\2713'; color: var(--teal); margin-right: 8px; }
+
+  /* ---------- steps ---------- */
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 2.4rem; counter-reset: s; }
+  .step { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+  .step .n {
+    counter-increment: s;
+    font-family: var(--mono); font-size: 0.78rem; color: var(--orange);
+    display: block; margin-bottom: 10px;
+  }
+  .step .n::before { content: '0' counter(s); }
+  .step p { color: var(--fg-2); font-size: 0.95rem; margin-top: 6px; }
+
+  /* ---------- features ---------- */
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 2.4rem; }
+  .card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 22px;
+  }
+  .card p { color: var(--fg-2); font-size: 0.95rem; margin-top: 7px; }
+  .card code { font-family: var(--mono); font-size: 0.88em; color: var(--fg); }
+  .tag {
+    display: inline-block; margin-bottom: 12px;
+    font-family: var(--mono); font-size: 0.66rem;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    padding: 3px 9px; border-radius: 999px;
+    border: 1px solid rgba(28, 138, 128, 0.45); color: var(--teal);
+  }
+  .subhead { margin-top: 3.2rem; }
+  .note {
+    margin-top: 1.6rem; padding: 16px 18px;
+    border-left: 2px solid var(--teal); background: var(--surface);
+    color: var(--fg-2); font-size: 0.95rem; border-radius: 0 10px 10px 0;
+  }
+
+  /* ---------- variants ---------- */
+  .variants { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 2.4rem; }
+  .variant { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
+  .variant.accent { border-color: rgba(255, 100, 0, 0.35); }
+  .variant .pkg { font-family: var(--mono); font-size: 0.8rem; color: var(--fg-3); margin-top: 6px; display: block; }
+  .variant ul { margin: 16px 0 0; padding-left: 20px; color: var(--fg-2); font-size: 0.95rem; }
+  .variant li { margin-bottom: 6px; }
+
+  /* ---------- screenshots ---------- */
+  .shots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 2.4rem; }
+  .shots figure { margin: 0; }
+  .shots img {
+    width: 100%; border-radius: 18px; display: block;
+    border: 1px solid var(--line-strong); background: var(--surface);
+  }
+  .shots figcaption { margin-top: 10px; font-size: 0.85rem; color: var(--fg-3); text-align: center; }
+
+  /* ---------- install ---------- */
+  .badges { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 2.2rem; }
+  .badges a { display: block; }
+  .badges img { height: 62px; width: auto; display: block; }
+  .soon { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.6rem; }
+  .pill {
+    font-family: var(--mono); font-size: 0.78rem;
+    padding: 9px 16px; border-radius: 999px;
+    border: 1px dashed var(--line-strong); color: var(--fg-3);
+  }
+  .facts { margin-top: 2.6rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .facts .card dt { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg-3); }
+  .facts .card dd { margin: 5px 0 16px; font-family: var(--mono); font-size: 0.82rem; word-break: break-all; color: var(--fg); }
+  .facts .card dd:last-child { margin-bottom: 0; }
+  .facts dl { margin: 0; }
+
+  /* ---------- disclosure ---------- */
+  .disclosure {
+    margin-top: 2rem; padding: 20px 22px;
+    background: var(--surface-2); border: 1px solid var(--line-strong);
+    border-radius: var(--radius); color: var(--fg-2); font-size: 0.95rem;
+  }
+  .disclosure .label {
+    font-family: var(--mono); font-size: 0.7rem;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--fg); display: block; margin-bottom: 8px;
+  }
+
+  /* ---------- footer ---------- */
+  footer { border-top: 1px solid var(--line); padding: 44px 0 60px; color: var(--fg-3); font-size: 0.9rem; }
+  .foot { display: flex; flex-wrap: wrap; gap: 14px 26px; align-items: center; }
+  .foot a { color: var(--fg-2); }
+  .foot .sep { margin-left: auto; }
+
+  @media (max-width: 900px) {
+    .hero .wrap { grid-template-columns: 1fr; gap: 40px; }
+    .hero-shot { order: -1; }
+    .grid, .steps { grid-template-columns: repeat(2, 1fr); }
+    .shots { grid-template-columns: repeat(3, 1fr); }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 620px) {
+    body { font-size: 16px; }
+    section { padding: 64px 0; }
+    .grid, .steps, .variants, .facts { grid-template-columns: 1fr; }
+    .shots { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .badges img { height: 54px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top"><img src="assets/icon.png" alt="" />Keycard Pal</a>
+    <nav class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#screens">Screenshots</a>
+      <a href="#install">Install</a>
+    </nav>
+    <a class="btn btn-primary" href="#install">Get the app</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Air-gapped hardware wallet companion</p>
+        <h1>Your keys stay on the card.</h1>
+        <p class="lede">Keycard Pal signs Ethereum and Bitcoin with a Status Keycard over NFC.
+        It talks to your wallet through animated QR codes, so nothing you sign has to pass
+        through an internet-connected device. Free, open source, no telemetry.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#install">Get the app</a>
+          <a class="btn btn-ghost" href="https://github.com/mmlado/keycard-pal">View the source</a>
+        </div>
+      </div>
+      <div class="hero-shot">
+        <img src="assets/screenshots/03_eth_transaction.webp" width="560" height="996"
+             alt="Keycard Pal reviewing an Ethereum transaction: chain, amount, recipient and fees" />
+      </div>
+    </div>
+  </section>
+
+  <div class="strip">
+    <div class="wrap">
+      <ul>
+        <li>Private keys never leave the card</li>
+        <li>No accounts, no analytics, no telemetry</li>
+        <li>MIT licensed</li>
+        <li>Reproducible release builds</li>
+        <li>Offline build with no internet permission</li>
+      </ul>
+    </div>
+  </div>
+
+  <section id="how">
+    <div class="wrap">
+      <p class="eyebrow">How it works</p>
+      <h2>Four steps, no cable.</h2>
+      <p class="lede">Your everyday wallet stays watch-only. Keycard Pal holds nothing and
+      connects to nothing.</p>
+      <div class="steps">
+        <div class="step">
+          <span class="n"></span>
+          <h3>Wallet shows a request</h3>
+          <p>MetaMask, Rabby, Sparrow, BlueWallet or Bitget renders the transaction as a QR code.</p>
+        </div>
+        <div class="step">
+          <span class="n"></span>
+          <h3>Scan and review</h3>
+          <p>Keycard Pal decodes it and shows what you are actually signing, in words.</p>
+        </div>
+        <div class="step">
+          <span class="n"></span>
+          <h3>Tap the Keycard</h3>
+          <p>Enter your PIN, hold the card to the phone. The card signs; the key never moves.</p>
+        </div>
+        <div class="step">
+          <span class="n"></span>
+          <h3>Show the signature back</h3>
+          <p>The signature goes back as an animated QR code. Your wallet broadcasts it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="wrap">
+      <p class="eyebrow">Features</p>
+      <h2>Read it before you sign it.</h2>
+      <p class="lede">Every request is decoded and laid out before the card is ever asked to
+      sign. Everything below works with no network connection.</p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Ethereum transactions</h3>
+          <p>Legacy, EIP-1559 and EIP-2930. Chain name, amount in the native currency,
+          recipient, fees and decoded calldata.</p>
+        </div>
+        <div class="card">
+          <h3>EIP-712 typed data</h3>
+          <p>Decoded review with dedicated screens for <code>Permit</code>,
+          <code>PermitSingle</code> and Safe transactions, plus the digests the card signs.</p>
+        </div>
+        <div class="card">
+          <h3>Clear signing</h3>
+          <p>EIP-7730 descriptors turn contract calls into plain rows. A registry snapshot
+          ships with the app and works offline.</p>
+        </div>
+        <div class="card">
+          <h3>Personal messages</h3>
+          <p>EIP-191 and Sign-In with Ethereum, so logging in to a dApp is a review like
+          any other.</p>
+        </div>
+        <div class="card">
+          <h3>Bitcoin</h3>
+          <p>PSBT signing with a per-input review, and BIP-322 message signing.</p>
+        </div>
+        <div class="card">
+          <h3>Wallet export</h3>
+          <p>Watch-only keys out to MetaMask, Rabby, Ledger Live, Sparrow, BlueWallet and
+          Bitget as UR QR codes.</p>
+        </div>
+        <div class="card">
+          <h3>Key material</h3>
+          <p>Generate a key pair on the card, import a BIP-39 phrase of 12 or 24 words with
+          an optional passphrase, SLIP-39 shares, or scan a SeedQR.</p>
+        </div>
+        <div class="card">
+          <h3>Genuine card check</h3>
+          <p>The card's certificate is verified before pairing, and an unrecognised one is
+          brought to you before anything is written.</p>
+        </div>
+        <div class="card">
+          <h3>Card management</h3>
+          <p>PIN, PUK and duress PIN, pairing slots, card name, factory reset. Nothing about
+          your card is stored on the phone.</p>
+        </div>
+      </div>
+
+      <h2 class="subhead">Online extras, off until you turn them on.</h2>
+      <p class="lede">The standard build can reach the network for these four. Each one ships
+      disabled, and none of them ever sees a private key.</p>
+
+      <div class="grid">
+        <div class="card">
+          <span class="tag">Opt-in</span>
+          <h3>WalletConnect</h3>
+          <p>Connect a dApp straight to Keycard Pal instead of scanning codes, and approve
+          its signing requests on the same review screens. You supply your own Reown
+          Project ID.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Opt-in</span>
+          <h3>Tenderly simulation</h3>
+          <p>Simulate a transaction before you sign and see the balance changes it would
+          cause. You supply your own Tenderly account and API key.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Opt-in</span>
+          <h3>ENS names</h3>
+          <p>Reverse-resolve addresses to <code>.eth</code> names through an RPC endpoint you
+          choose.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Opt-in</span>
+          <h3>Token images</h3>
+          <p>Fetch token logos from their public sources. Token symbols and decimals are
+          bundled either way.</p>
+        </div>
+      </div>
+
+      <p class="note">Nothing here is enabled by default, no key or credential is shipped with
+      the app, and no traffic reaches the developer. If you would rather not have the option
+      at all, install <strong>Keycard Pal Offline</strong>, which has no internet permission
+      in its manifest.</p>
+    </div>
+  </section>
+
+  <section id="variants">
+    <div class="wrap">
+      <p class="eyebrow">Two builds</p>
+      <h2>Pick how much network you want.</h2>
+      <p class="lede">Both sign and manage keys identically. They differ in one line of the
+      Android manifest.</p>
+      <div class="variants">
+        <div class="variant accent">
+          <h3>Keycard Pal</h3>
+          <span class="pkg">com.keycardpal</span>
+          <ul>
+            <li>Everything in the offline build</li>
+            <li>WalletConnect, Tenderly simulation, ENS names and token images available</li>
+            <li>Each of them off until you turn it on in Settings</li>
+          </ul>
+        </div>
+        <div class="variant">
+          <h3>Keycard Pal Offline</h3>
+          <span class="pkg">com.keycardpal.offline</span>
+          <ul>
+            <li>No <code>INTERNET</code> permission in the manifest</li>
+            <li>The online code is not in the build, not merely switched off</li>
+            <li>Signing, key management and wallet export, unchanged</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="screens">
+    <div class="wrap">
+      <p class="eyebrow">Screenshots</p>
+      <h2>What it looks like.</h2>
+      <div class="shots">
+      <figure><img src="assets/screenshots/01_welcome.webp" width="560" height="996" loading="lazy" alt="Welcome screen" /><figcaption>Welcome</figcaption></figure>
+      <figure><img src="assets/screenshots/02_scan_qr_code.webp" width="560" height="996" loading="lazy" alt="Scanning an animated QR code" /><figcaption>Scan a request</figcaption></figure>
+      <figure><img src="assets/screenshots/03_eth_transaction.webp" width="560" height="996" loading="lazy" alt="Ethereum transaction review" /><figcaption>Ethereum review</figcaption></figure>
+      <figure><img src="assets/screenshots/04_eip712_permit.webp" width="560" height="996" loading="lazy" alt="EIP-712 permit review" /><figcaption>EIP-712 permit</figcaption></figure>
+      <figure><img src="assets/screenshots/05_btc_psbt.webp" width="560" height="996" loading="lazy" alt="Bitcoin PSBT review" /><figcaption>Bitcoin PSBT</figcaption></figure>
+      <figure><img src="assets/screenshots/06_signature_qr.webp" width="560" height="996" loading="lazy" alt="Signature returned as a QR code" /><figcaption>Signature out</figcaption></figure>
+      <figure><img src="assets/screenshots/07_seed_phrase.webp" width="560" height="996" loading="lazy" alt="Recovery phrase backup" /><figcaption>Recovery phrase</figcaption></figure>
+      <figure><img src="assets/screenshots/08_pin_pad.webp" width="560" height="996" loading="lazy" alt="PIN entry" /><figcaption>PIN entry</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="install">
+    <div class="wrap">
+      <p class="eyebrow">Install</p>
+      <h2>Available now on Android.</h2>
+      <p class="lede">Google Play carries the standard build. The developer-signed APKs on
+      GitHub and in the F-Droid repository below carry both builds, including Keycard Pal
+      Offline.</p>
+
+      <div class="badges">
+        <a href="https://play.google.com/store/apps/details?id=com.keycardpal">
+          <img src="assets/badges/badge_play.png" alt="Get it on Google Play" />
+        </a>
+        <a href="https://fdroid.keycardpal.com/repo?fingerprint=24EB891A8A617F8BF20892CB0CF9267709BA94056E64242AD9EDF638C2FED3D2">
+          <img src="assets/badges/badge_fdroid.png" alt="Get it on F-Droid, from the developer's own repository" />
+        </a>
+        <a href="https://apps.obtainium.imranr.dev/redirect.html?r=obtainium://add/https://github.com/mmlado/keycard-pal">
+          <img src="assets/badges/badge_obtainium.png" alt="Get it on Obtainium" />
+        </a>
+        <a href="https://github.com/mmlado/keycard-pal/releases/latest">
+          <img src="assets/badges/badge_github.png" alt="Get the APK on GitHub" />
+        </a>
+      </div>
+
+      <div class="soon">
+        <span class="pill">iOS — coming soon</span>
+        <span class="pill">F-Droid main repository — coming soon</span>
+      </div>
+
+      <p class="note">The Play copy is re-signed by Google Play App Signing; the GitHub and
+      F-Droid copies are signed by the developer. Two different signatures means one cannot
+      update the other, so pick a source and stay with it. The F-Droid repository above is the
+      developer's own, serving the same APKs that are attached to each GitHub release.</p>
+
+      <div class="facts">
+        <div class="card">
+          <dl>
+            <dt>F-Droid repository URL</dt>
+            <dd>https://fdroid.keycardpal.com/repo/</dd>
+            <dt>Repository fingerprint</dt>
+            <dd>24EB891A8A617F8BF20892CB0CF9267709BA94056E64242AD9EDF638C2FED3D2</dd>
+          </dl>
+        </div>
+        <div class="card">
+          <dl>
+            <dt>Signing certificate SHA-256</dt>
+            <dd>A8:3C:11:4B:1F:42:01:DA:FB:D0:3E:22:1F:1C:29:28:EC:B5:2B:78:BD:A5:E9:3F:29:6F:ED:F2:29:8E:54:6B</dd>
+            <dt>Requirements</dt>
+            <dd>Android 7.0 (API 24) and NFC. A Keycard.</dd>
+          </dl>
+        </div>
+      </div>
+
+      <p style="margin-top:1.6rem;color:var(--fg-2);font-size:0.95rem">Every release attaches
+      <code style="font-family:var(--mono)">SHA256SUMS.txt</code> so you can check an APK
+      before installing it, plus per-architecture splits for a smaller download. For most
+      people the universal APK is the right one.</p>
+    </div>
+  </section>
+
+  <section id="card">
+    <div class="wrap">
+      <p class="eyebrow">The hardware</p>
+      <h2>Keycard Pal needs a Keycard.</h2>
+      <p class="lede">The app is the companion, not the wallet. Signing happens on a Status
+      Keycard, an NFC smart card you hold to the back of the phone. No USB, no Bluetooth, no
+      battery. Cards are sold at <a href="https://get.keycard.tech/vuxxnf">keycard.tech</a>.</p>
+      <div class="disclosure">
+        <span class="label">Advertisement</span>
+        The link above, and the Buy a Keycard links in the Android app, are affiliate links:
+        the developer earns a commission on purchases made through them. No feature depends on
+        buying through them, every feature of the app is free, and a Keycard bought anywhere
+        works exactly the same. The iOS app carries no affiliate link and points at the
+        product site instead.
+      </div>
+    </div>
+  </section>
+
+  <section id="built">
+    <div class="wrap">
+      <p class="eyebrow">How it is built</p>
+      <h2>Stated up front.</h2>
+      <p class="lede">Keycard Pal is developed with substantial help from AI coding assistants
+      (Claude and Codex). I decide what gets built, read and test what goes in, and maintain it
+      myself.</p>
+      <p style="color:var(--fg-2);max-width:62ch">What keeps that honest is in the repository: a
+      Jest suite that runs on every pull request, architecture decision records explaining why
+      things are the way they are, a check that the offline build carries no online code, and
+      release APKs that anyone can rebuild byte for byte. Fixes that belonged upstream were sent
+      upstream. Every release is tested on real Keycards and real phones before it ships.</p>
+      <div class="hero-actions">
+        <a class="btn btn-ghost" href="https://github.com/mmlado/keycard-pal">Read the code</a>
+        <a class="btn btn-ghost" href="privacy.html">Privacy policy</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="donate">
+    <div class="wrap">
+      <p class="eyebrow">Donations</p>
+      <h2>Voluntary, and nothing in return.</h2>
+      <p class="lede">If Keycard Pal keeps your funds safe, you can send a coffee my way.
+      Addresses are in <a href="https://github.com/mmlado/keycard-pal/blob/main/DONATE.md">DONATE.md</a>
+      and on the app's About screen. Donations are voluntary and nothing is unlocked, changed
+      or promised in return.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>Keycard Pal — MIT licensed</span>
+    <a href="https://github.com/mmlado/keycard-pal">GitHub</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="https://github.com/mmlado/keycard-pal/issues">Report an issue</a>
+    <span class="sep">Not affiliated with Status or Keycard.</span>
+  </div>
+</footer>
+
+</body>
+</html>
