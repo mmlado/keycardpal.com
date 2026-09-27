@@ -173,6 +173,7 @@
     padding: 3px 9px; border-radius: 999px;
     border: 1px solid rgba(28, 138, 128, 0.45); color: var(--teal);
   }
+  .tag-soon { border-color: rgba(255, 100, 0, 0.5); color: var(--orange); }
   .subhead { margin-top: 3.2rem; }
   .note {
     margin-top: 1.6rem; padding: 16px 18px;
@@ -306,12 +307,13 @@
         <div class="step">
           <span class="n"></span>
           <h3>Wallet shows a request</h3>
-          <p>MetaMask, Rabby, Sparrow, BlueWallet or Bitget renders the transaction as a QR code.</p>
+          <p>MetaMask, Sparrow or any wallet that speaks the same UR format renders the
+          transaction as a QR code.</p>
         </div>
         <div class="step">
           <span class="n"></span>
           <h3>Scan and review</h3>
-          <p>Keycard Pal decodes it and shows what you are actually signing, in words.</p>
+          <p>Keycard Pal decodes it and lays out what you are actually signing, in words.</p>
         </div>
         <div class="step">
           <span class="n"></span>
@@ -331,8 +333,8 @@
     <div class="wrap">
       <p class="eyebrow">Features</p>
       <h2>Read it before you sign it.</h2>
-      <p class="lede">Every request is decoded and laid out before the card is ever asked to
-      sign. Everything below works with no network connection.</p>
+      <p class="lede">Requests the app can decode are laid out in full before the card is ever
+      asked to sign. Everything below works with no network connection.</p>
 
       <div class="grid">
         <div class="card">
@@ -346,23 +348,25 @@
           <code>PermitSingle</code> and Safe transactions, plus the digests the card signs.</p>
         </div>
         <div class="card">
+          <span class="tag tag-soon">Coming soon</span>
           <h3>Clear signing</h3>
-          <p>EIP-7730 descriptors turn contract calls into plain rows. A registry snapshot
-          ships with the app and works offline.</p>
+          <p>EIP-7730 descriptors will turn any contract call into plain rows from a bundled
+          registry snapshot. Today a built-in parser covers ERC-20 and the Uniswap Universal
+          Router.</p>
         </div>
         <div class="card">
           <h3>Personal messages</h3>
-          <p>EIP-191 and Sign-In with Ethereum, so logging in to a dApp is a review like
-          any other.</p>
+          <p>EIP-191 and Sign-In with Ethereum requests are signed on the card. The payload is
+          shown as its raw bytes; a readable message review is still to come.</p>
         </div>
         <div class="card">
           <h3>Bitcoin</h3>
-          <p>PSBT signing with a per-input review, and BIP-322 message signing.</p>
+          <p>PSBT signing with a row per output and the fee, and BIP-322 message signing.</p>
         </div>
         <div class="card">
           <h3>Wallet export</h3>
-          <p>Watch-only keys out to MetaMask, Rabby, Ledger Live, Sparrow, BlueWallet and
-          Bitget as UR QR codes.</p>
+          <p>Watch-only keys out to MetaMask, Ledger Live and Bitget as UR QR codes, plus
+          standard Bitcoin account exports other watch-only wallets can import.</p>
         </div>
         <div class="card">
           <h3>Key material</h3>
@@ -402,14 +406,14 @@
         <div class="card">
           <span class="tag">Opt-in</span>
           <h3>ENS names</h3>
-          <p>Reverse-resolve addresses to <code>.eth</code> names through an RPC endpoint you
-          choose.</p>
+          <p>Reverse-resolve addresses to <code>.eth</code> names. A public RPC endpoint is
+          filled in when you turn it on, and you can change it to any endpoint you like.</p>
         </div>
         <div class="card">
           <span class="tag">Opt-in</span>
           <h3>Token images</h3>
-          <p>Fetch token logos from their public sources. Token symbols and decimals are
-          bundled either way.</p>
+          <p>Fetch token logos from the URLs in the bundled token list. Token symbols and
+          decimals are bundled either way.</p>
         </div>
       </div>
 
