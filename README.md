@@ -53,8 +53,9 @@ ghcr.io/actions/jekyll-build-pages:v1.0.13`.
 
 ## Deploying
 
-`.github/workflows/pages.yml` runs on every push to `main` and on manual dispatch. Set
-Settings → Pages → Source to **GitHub Actions**.
+`.github/workflows/pages.yml` builds the site for every pull request, so a broken build
+shows up before it reaches `main`. A push to `main`, or a manual run on `main`, builds and
+then deploys. Set Settings → Pages → Source to **GitHub Actions**.
 
 DNS for the apex domain:
 
