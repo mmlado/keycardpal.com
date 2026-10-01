@@ -23,22 +23,24 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Assemble site
-        run: |
-          mkdir -p pages
-          cp -r index.html assets CNAME .nojekyll pages/
-
       # The privacy policy has one source, docs/privacy.html in the app repo,
       # so the copy served here cannot drift from the one at fdroid.keycardpal.com.
+      # Fetched before the build: Jekyll's output folder is root-owned afterwards.
       - name: Pull privacy policy from the app repo
         run: |
-          curl -fsSL -o pages/privacy.html \
+          curl -fsSL -o privacy.html \
             https://raw.githubusercontent.com/mmlado/keycard-pal/main/docs/privacy.html
-          grep -q "Keycard Pal Privacy Policy" pages/privacy.html
+          grep -q "Keycard Pal Privacy Policy" privacy.html
+
+      - name: Build site
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: pages/
+          path: _site/
 
       - id: deploy
         uses: actions/deploy-pages@v4
