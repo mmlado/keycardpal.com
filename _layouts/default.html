@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+{%- assign desc = page.description | default: site.description %}
+{%- assign home = false %}
+{%- if page.url == "/" %}{% assign home = true %}{% endif %}
+{%- if home %}
+<title>{{ page.title }}</title>
+{%- else %}
+<title>{{ page.title }} - Keycard Pal</title>
+{%- endif %}
+<meta name="description" content="{{ desc | escape }}" />
+<link rel="canonical" href="{{ page.url | absolute_url }}" />
+<link rel="icon" href="/assets/icon.png" />
+<meta property="og:site_name" content="Keycard Pal" />
+<meta property="og:title" content="{% if home %}Keycard Pal{% else %}{{ page.title | escape }}{% endif %}" />
+<meta property="og:description" content="{{ page.og_description | default: desc | escape }}" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ page.url | absolute_url }}" />
+<meta property="og:image" content="https://keycardpal.com/assets/icon.png" />
+<meta name="theme-color" content="#121212" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+{%- comment %} On the landing page the nav scrolls in place; elsewhere it leads back to it. {% endcomment %}
+{%- if home %}{% assign root = "" %}{% else %}{% assign root = "/" %}{% endif %}
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="{% if home %}#top{% else %}/{% endif %}"><img src="/assets/icon.png" alt="" />Keycard Pal</a>
+    <nav class="nav-links">
+      <a href="{{ root }}#how">How it works</a>
+      <a href="{{ root }}#features">Features</a>
+      <a href="{{ root }}#screens">Screenshots</a>
+      <a href="{{ root }}#install">Install</a>
+    </nav>
+    <a class="btn btn-primary" href="{{ root }}#install">Get the app</a>
+  </div>
+</header>
+
+{{ content }}
+
+<footer>
+  <div class="wrap foot">
+    <span>Keycard Pal — MIT licensed</span>
+    <a href="https://github.com/mmlado/keycard-pal">GitHub</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="https://github.com/mmlado/keycard-pal/issues">Report an issue</a>
+    <span class="sep">Not affiliated with Status or Keycard.</span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+title: Keycard Pal
+description: Air-gapped Keycard companion for Ethereum and Bitcoin. Your keys never leave the card.
+url: https://keycardpal.com
+# Set explicitly so the build never asks the GitHub API for it, which fails without a token.
+baseurl: ""
+
+# Keep the text exactly as typed: no curly quotes, no ellipsis or dash substitution
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  smart_quotes: ["apos", "apos", "quot", "quot"]
+  typographic_symbols: { hellip: "...", mdash: "---", ndash: "--", laquo: "<<", raquo: ">>", laquo_space: "<< ", raquo_space: " >>" }
+  syntax_highlighter_opts:
+    disable: true
+
+exclude:
+  - README.md
+  - sync-privacy.sh
+  - build.sh
