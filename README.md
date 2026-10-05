@@ -97,7 +97,8 @@ Change these here whenever they change in the app repo:
 - The affiliate link carries the referral code and is labelled as an advertisement wherever
   it appears
 - Loading a page makes no request to any host other than `keycardpal.com`: no fonts, scripts,
-  images or embeds from elsewhere. Links that lead off-site are fine
+  images or embeds from elsewhere. Links that lead off-site are fine, and the layout's
+  referrer policy keeps the destination from learning which page they came from
 
 ## License
 
