@@ -1,3 +1,20 @@
+/* Served from this origin so a page view never reaches a third party. SIL OFL 1.1, texts in assets/fonts/. */
+@font-face {
+  font-family: 'Schibsted Grotesk';
+  src: url('/assets/fonts/SchibstedGrotesk-Variable.woff2') format('woff2');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/assets/fonts/JetBrainsMono-Variable.woff2') format('woff2');
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg: #121212;
   --surface: #1e1e1e;
