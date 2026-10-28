@@ -123,13 +123,11 @@ the digests the card signs.
 </div>
 <div class="card" markdown="1">
 
-Coming soon
-{: .tag .tag-soon}
-
 ### Clear signing
 
-EIP-7730 descriptors will turn any contract call into plain rows from a bundled registry
-snapshot. Today a built-in parser covers ERC-20 and the Uniswap Universal Router.
+ERC-7730 descriptors turn contract calls and EIP-712 messages into plain rows, with a line
+saying whether an auditor reviewed them. The registry ships with the app, and Settings can
+load a newer one.
 
 </div>
 <div class="card" markdown="1">

@@ -171,7 +171,6 @@ header {
   padding: 3px 9px; border-radius: 999px;
   border: 1px solid rgba(28, 138, 128, 0.45); color: var(--teal);
 }
-.card .tag-soon { border-color: rgba(255, 100, 0, 0.5); color: var(--orange); }
 .subhead { margin-top: 3.2rem; }
 .fine { margin-top: 1.6rem; color: var(--fg-2); font-size: 0.95rem; }
 .fine code { font-family: var(--mono); }
