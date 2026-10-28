@@ -171,7 +171,6 @@ header {
   padding: 3px 9px; border-radius: 999px;
   border: 1px solid rgba(28, 138, 128, 0.45); color: var(--teal);
 }
-.card .tag-soon { border-color: rgba(255, 100, 0, 0.5); color: var(--orange); }
 .subhead { margin-top: 3.2rem; }
 .fine { margin-top: 1.6rem; color: var(--fg-2); font-size: 0.95rem; }
 .fine code { font-family: var(--mono); }
@@ -203,12 +202,6 @@ header {
 .badges { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 2.2rem; }
 .badges a { display: block; }
 .badges img { height: 62px; width: auto; display: block; }
-.soon { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.6rem; }
-.pill {
-  font-family: var(--mono); font-size: 0.78rem;
-  padding: 9px 16px; border-radius: 999px;
-  border: 1px dashed var(--line-strong); color: var(--fg-3);
-}
 .facts { margin-top: 2.6rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 .facts .card dt { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg-3); }
 .facts .card dd { margin: 5px 0 16px; font-family: var(--mono); font-size: 0.82rem; word-break: break-all; color: var(--fg); }
