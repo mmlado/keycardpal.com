@@ -315,36 +315,31 @@ Install
 
 ## Available on Android and iOS.
 
-Google Play carries the standard Android build and the App Store carries the iOS app. The
-developer-signed APKs on GitHub and in the F-Droid repository below carry both Android builds,
-including Keycard Pal Offline.
+Google Play carries the standard Android build and the App Store carries the iOS app. GitHub,
+F-Droid and the developer's own F-Droid repository carry both Android builds, including Keycard
+Pal Offline.
 {: .lede}
 
 [![Get the APK on GitHub](/assets/badges/badge_github.png)](https://github.com/mmlado/keycard-pal/releases/latest)
 [![Get it on Obtainium](/assets/badges/badge_obtainium.png)](https://apps.obtainium.imranr.dev/redirect.html?r=obtainium://add/https://github.com/mmlado/keycard-pal)
-[![Get it on F-Droid, from the developer's own repository](/assets/badges/badge_fdroid.png)](https://fdroid.keycardpal.com/repo?fingerprint=24EB891A8A617F8BF20892CB0CF9267709BA94056E64242AD9EDF638C2FED3D2)
+[![Get it on F-Droid](/assets/badges/badge_fdroid.png)](https://f-droid.org/packages/com.keycardpal/)
 [![Get it on Google Play](/assets/badges/badge_play.png)](https://play.google.com/store/apps/details?id=com.keycardpal)
 [![Download on the App Store](/assets/badges/badge_appstore.svg)](https://apps.apple.com/app/keycard-pal/id6777478235)
 {: .badges}
 
-<div class="soon" markdown="1">
-
-F-Droid main repository — coming soon
-{: .pill}
-
-</div>
-
 The Play copy is re-signed by Google Play App Signing; the GitHub and F-Droid copies are
 signed by the developer. Two different signatures means one cannot update the other, so pick a
-source and stay with it. The F-Droid repository above is the developer's own, serving the same
-APKs that are attached to each GitHub release.
+source and stay with it. F-Droid carries [Keycard Pal](https://f-droid.org/packages/com.keycardpal/)
+and [Keycard Pal Offline](https://f-droid.org/packages/com.keycardpal.offline/), and publishes a
+release only when its own build from source matches the GitHub APK byte for byte. The
+developer's own F-Droid repository, below, serves the same APKs as soon as a release is tagged.
 {: .note}
 
 <div class="facts">
 <div class="card">
 <dl>
-<dt>F-Droid repository URL</dt>
-<dd>https://fdroid.keycardpal.com/repo/</dd>
+<dt>Developer's F-Droid repository</dt>
+<dd><a href="https://fdroid.keycardpal.com/repo?fingerprint=24EB891A8A617F8BF20892CB0CF9267709BA94056E64242AD9EDF638C2FED3D2">https://fdroid.keycardpal.com/repo/</a></dd>
 <dt>Repository fingerprint</dt>
 <dd>24EB891A8A617F8BF20892CB0CF9267709BA94056E64242AD9EDF638C2FED3D2</dd>
 </dl>
