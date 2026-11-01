@@ -1,8 +1,8 @@
 ---
 layout: home
 title: "Keycard Pal — air-gapped Keycard companion for Ethereum and Bitcoin"
-description: "Keycard Pal is an air-gapped companion app for the Status Keycard. Review and sign Ethereum and Bitcoin transactions over NFC, and talk to your wallet through animated QR codes. Private keys never leave the card."
-og_description: "Air-gapped Keycard companion for Ethereum and Bitcoin. Your keys never leave the card."
+description: "Keycard Pal is an air-gapped companion app for the Status Keycard. Review and sign Ethereum and Bitcoin transactions over NFC, and talk to your wallet through animated QR codes. The key on the card never leaves it."
+og_description: "Air-gapped Keycard companion for Ethereum and Bitcoin. The key on the card never leaves it."
 permalink: /
 ---
 
@@ -36,7 +36,7 @@ device. Free, open source, no telemetry.
 <div class="strip" markdown="1">
 <div class="wrap" markdown="1">
 
-- Private keys never leave the card
+- The key on the card never leaves it
 - No accounts, no analytics, no telemetry
 - MIT licensed
 - Reproducible release builds
@@ -158,7 +158,10 @@ UR QR codes, plus standard Bitcoin account exports other watch-only wallets can 
 ### Key material
 
 Generate a key pair on the card, import a BIP-39 phrase of 12 or 24 words with an optional
-passphrase, SLIP-39 shares, or scan a SeedQR.
+passphrase, SLIP-39 shares, or scan a SeedQR. On a Keycard with applet 4 or later, derive
+BIP-85 secrets from the card's key: recovery phrases, WIF and XPRV keys, hex entropy and
+passwords, shown on the phone. Key material is on the phone only for these, and when you
+verify a phrase against the card.
 
 </div>
 <div class="card" markdown="1">
