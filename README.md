@@ -94,8 +94,8 @@ Change these here whenever they change in the app repo:
 - Package IDs `com.keycardpal` and `com.keycardpal.offline`
 - Signing certificate SHA-256 and the F-Droid repository fingerprint
 - Install channels, and which ones are still marked coming soon
-- The affiliate link carries the referral code and is labelled as an advertisement wherever
-  it appears
+- The Keycard link is `https://keycard.tech` with no referral code, and the footer says the
+  Keycard team has provided equipment
 - Loading a page makes no request to any host other than `keycardpal.com`: no fonts, scripts,
   images or embeds from elsewhere. Links that lead off-site are fine, and the layout's
   referrer policy keeps the destination from learning which page they came from

@@ -373,21 +373,8 @@ The hardware
 
 The app is the companion, not the wallet. Signing happens on a Status Keycard, an NFC smart
 card you hold to the back of the phone. No USB, no Bluetooth, no battery. Cards are sold at
-[keycard.tech](https://get.keycard.tech/vuxxnf).
+[keycard.tech](https://keycard.tech).
 {: .lede}
-
-<div class="disclosure" markdown="1">
-
-Advertisement
-{: .label}
-
-The link above, and the Buy a Keycard links in the Android app, are affiliate links: the
-developer earns a commission on purchases made through them. No feature depends on buying
-through them, every feature of the app is free, and a Keycard bought anywhere works exactly
-the same. The iOS app carries no affiliate link and points at the product site instead.
-The Keycard team has also provided equipment for developing the app.
-
-</div>
 
 </div>
 </section>
