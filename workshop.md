@@ -20,6 +20,8 @@ just happened.
 > holds a small balance of ETH on Base, enough for the exercise, so you do not need to bring or
 > send any funds of your own.
 
+The Keycards used in this workshop were provided by the Keycard team.
+
 ## What a station is
 
 A station is two halves that never touch each other over a network.
