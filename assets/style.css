@@ -208,18 +208,6 @@ header {
 .facts .card dd:last-child { margin-bottom: 0; }
 .facts dl { margin: 0; }
 
-/* ---------- disclosure ---------- */
-.disclosure {
-  margin-top: 2rem; padding: 20px 22px;
-  background: var(--surface-2); border: 1px solid var(--line-strong);
-  border-radius: var(--radius); color: var(--fg-2); font-size: 0.95rem;
-}
-.disclosure .label {
-  font-family: var(--mono); font-size: 0.7rem;
-  text-transform: uppercase; letter-spacing: 0.14em;
-  color: var(--fg); display: block; margin-bottom: 8px;
-}
-
 /* ---------- footer ---------- */
 footer { border-top: 1px solid var(--line); padding: 44px 0 60px; color: var(--fg-3); font-size: 0.9rem; }
 .foot { display: flex; flex-wrap: wrap; gap: 14px 26px; align-items: center; }
