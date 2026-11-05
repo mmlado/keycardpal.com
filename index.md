@@ -385,6 +385,7 @@ The link above, and the Buy a Keycard links in the Android app, are affiliate li
 developer earns a commission on purchases made through them. No feature depends on buying
 through them, every feature of the app is free, and a Keycard bought anywhere works exactly
 the same. The iOS app carries no affiliate link and points at the product site instead.
+The Keycard team has also provided equipment for developing the app.
 
 </div>
 
