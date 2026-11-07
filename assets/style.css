@@ -126,6 +126,9 @@ header {
 .hero h1 { font-size: clamp(2.3rem, 5.6vw, 3.6rem); }
 .hero .lede { margin-top: 1.15rem; font-size: 1.14rem; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 2rem; }
+/* The badge canvas pads each side by 41 of 646 px; this lines the visible badge up with the text. */
+.hero .badges { margin-top: 2rem; margin-left: -10px; }
+.hero .badges + .hero-actions { margin-top: 1.25rem; }
 .hero-shot { justify-self: center; }
 .hero-shot img {
   width: 100%;
@@ -216,7 +219,6 @@ footer { border-top: 1px solid var(--line); padding: 44px 0 60px; color: var(--f
 
 @media (max-width: 900px) {
   .hero .wrap { grid-template-columns: 1fr; gap: 40px; }
-  .hero-shot { order: -1; }
   .grid, .steps { grid-template-columns: repeat(2, 1fr); }
   .shots { grid-template-columns: repeat(3, 1fr); }
   .nav-links { display: none; }
@@ -224,9 +226,11 @@ footer { border-top: 1px solid var(--line); padding: 44px 0 60px; color: var(--f
 @media (max-width: 620px) {
   body { font-size: 16px; }
   section { padding: 64px 0; }
+  .hero { padding: 48px 0 64px; }
   .grid, .steps, .variants, .facts { grid-template-columns: 1fr; }
   .shots { grid-template-columns: repeat(2, 1fr); gap: 14px; }
   .badges img { height: 54px; }
+  .hero .badges { margin-left: -9px; }
 }
 
 /* ---------- markdown pages ---------- */

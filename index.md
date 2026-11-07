@@ -20,7 +20,12 @@ through animated QR codes, so nothing you sign has to pass through an internet-c
 device. Free, open source, no telemetry.
 {: .lede}
 
-[Get the app](#install){: .btn .btn-primary}
+[![Download on the App Store](/assets/badges/badge_appstore.svg)](https://apps.apple.com/app/keycard-pal/id6777478235)
+[![Get it on Google Play](/assets/badges/badge_play.png)](https://play.google.com/store/apps/details?id=com.keycardpal)
+[![Get it on F-Droid](/assets/badges/badge_fdroid.png)](https://f-droid.org/packages/com.keycardpal/)
+{: .badges .hero-badges}
+
+[All install options](#install){: .btn .btn-ghost}
 [View the source](https://github.com/mmlado/keycard-pal){: .btn .btn-ghost}
 {: .hero-actions}
 
