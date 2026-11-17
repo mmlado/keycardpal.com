@@ -21,6 +21,7 @@ included, is in `assets/`, so viewing a page sends nothing to any third party.
 | `build.sh` | Local build with the deploy workflow's Jekyll image |
 | `assets/screenshots/` | App screenshots, 560 px wide WebP, generated from `fastlane/metadata/android/en-US/images/phoneScreenshots` in the app repo |
 | `assets/badges/` | Store badges: Google Play, App Store and F-Droid official artwork, GitHub and Obtainium from the app repo |
+| `assets/video/` | The demo video's poster, 1280 x 720 WebP. The landing page links it to YouTube rather than embedding a player, so nothing from YouTube loads until a visitor clicks |
 | `assets/icon.png` | App icon |
 | `CNAME` | `keycardpal.com` |
 
