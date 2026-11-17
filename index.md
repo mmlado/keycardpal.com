@@ -97,6 +97,25 @@ The signature goes back as an animated QR code. Your wallet broadcasts it.
 </div>
 </section>
 
+<section id="demo" markdown="1">
+<div class="wrap" markdown="1">
+
+Demo
+{: .eyebrow}
+
+## Watch it sign.
+
+Six minutes, from a new Keycard to a signed transaction on the Sepolia testnet.
+{: .lede}
+
+<a class="video" href="https://www.youtube.com/watch?v=oiqulEMf4Gc"><img src="/assets/video/demo.webp" width="1280" height="720" loading="lazy" alt="Keycard Pal demo video: setting up a Keycard and signing a transaction. Opens on YouTube." /></a>
+
+The video plays on YouTube. Nothing from YouTube loads until you open it.
+{: .fine}
+
+</div>
+</section>
+
 <section id="features" markdown="1">
 <div class="wrap" markdown="1">
 

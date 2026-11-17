@@ -159,6 +159,16 @@ header {
 }
 .step p { color: var(--fg-2); font-size: 0.95rem; margin-top: 6px; }
 
+/* ---------- demo ---------- */
+.video { display: block; max-width: 880px; margin-top: 2.4rem; }
+.video img {
+  display: block; width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+}
+.video:hover img, .video:focus-visible img { border-color: var(--orange); }
+
 /* ---------- features ---------- */
 .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 2.4rem; }
 .card {
